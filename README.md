@@ -20,7 +20,6 @@ AI-ML/
     ├── README.md
     ├── requirements.txt
     ├── AIML_Project_1_Full_Code_Notebook.ipynb
-    ├── AIML_Project_1_Full_Code_Notebook_yogitha.html
     ├── data/
     ├── scripts/
     └── src/

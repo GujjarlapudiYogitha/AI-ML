@@ -10,3 +10,4 @@ dependencies, source code, and notebooks.
 | Project | Description |
 | --- | --- |
 | [Wind Turbine Failure Detection](Wind-Turbine-Failure-Detection/) | Predicts wind-turbine drivetrain faults from SCADA sensor data to support condition-based maintenance. |
+| [Customer Support Ticket Intelligence](Customer-Support-Ticket-Intelligence/) | Classifies customer-support tickets and recommends the appropriate support team. |

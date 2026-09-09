@@ -10,20 +10,3 @@ dependencies, source code, and notebooks.
 | Project | Description |
 | --- | --- |
 | [Wind Turbine Failure Detection](Wind-Turbine-Failure-Detection/) | Predicts wind-turbine drivetrain faults from SCADA sensor data to support condition-based maintenance. |
-
-## Repository structure
-
-```text
-AI-ML/
-├── README.md
-└── Wind-Turbine-Failure-Detection/
-    ├── README.md
-    ├── requirements.txt
-    ├── AIML_Project_1_Full_Code_Notebook.ipynb
-    ├── data/
-    ├── scripts/
-    └── src/
-```
-
-Open a project's README for its setup instructions, data requirements, and
-workflow.

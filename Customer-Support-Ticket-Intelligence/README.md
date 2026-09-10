@@ -29,10 +29,10 @@ Given a non-empty customer-support message, the first version will:
 
 | Category | Description | Suggested team |
 | --- | --- | --- |
-| Billing | Payments, duplicate charges, invoices, subscriptions, and refunds | Billing Support |
-| Account Access | Login, password reset, locked account, and authentication problems | Account Support |
+| Billing and Payments | Payments, charges, invoices, subscriptions, and other billing questions | Billing and Payments |
+| Customer Service | General customer questions and service-related requests | Customer Service |
+| Product Support | Questions and issues involving a product or its functionality | Product Support |
 | Technical Support | Errors, crashes, unavailable functionality, and other product failures | Technical Support |
-| Product Request | Requests for new features or improvements to existing functionality | Product Team |
 
 Each ticket will receive one primary category. When a ticket mentions multiple
 issues, the category representing the user's immediate support need should be
@@ -50,14 +50,44 @@ I was charged twice for my monthly subscription.
 
 ```json
 {
-  "category": "Billing",
+  "category": "Billing and Payments",
   "confidence": 0.87,
-  "suggested_team": "Billing Support"
+  "suggested_team": "Billing and Payments"
 }
 ```
 
 The confidence shown above is only an example. Measured scores will be added
 after the model has been trained and evaluated.
+
+## Dataset
+
+This project uses the
+[Customer Support Tickets dataset](https://huggingface.co/datasets/Tobi-Bueck/customer-support-tickets)
+published by Tobi-Bueck on Hugging Face. The dataset contains synthetic
+customer-support emails and is licensed under
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). It is used
+here for a noncommercial educational portfolio project with attribution to the
+dataset creator.
+
+The downloaded source file contains 28,587 records. Version 1 filters the data
+to 11,815 English-language tickets assigned to four queues: Billing and
+Payments, Customer Service, Product Support, and Technical Support.
+
+The planned model input combines the ticket `subject` and `body`, while the
+prediction target is `queue`. The `answer` column is excluded because it is
+written after a ticket is handled and could reveal information about the
+correct queue, causing data leakage.
+
+Within the filtered data, 1,842 records have a missing subject, while `body`
+and `queue` have no missing values. A missing subject can therefore be replaced
+with an empty string while retaining the ticket body. The four classes are
+moderately imbalanced, with Technical Support representing the largest class
+and Billing and Payments the smallest. Macro F1 and per-class metrics will be
+used so that performance on smaller classes is not hidden by overall accuracy.
+
+Manual inspection also found some ambiguous or potentially noisy queue labels.
+This label quality, along with the synthetic nature of the tickets, is a known
+limitation and will be considered during error analysis.
 
 ## Version 1 Scope
 

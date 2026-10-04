@@ -7,6 +7,7 @@ import joblib
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MODEL_PATH = PROJECT_ROOT / "models" / "calibrated_svm_pipeline.joblib"
+MAX_TICKET_LENGTH = 10_000
 
 
 def load_model(model_path=MODEL_PATH):
@@ -22,7 +23,7 @@ def load_model(model_path=MODEL_PATH):
     return joblib.load(model_path)
 
 def validate_ticket(ticket):
-    """Validate ticket input and remove surrounding whitespace."""
+    """Validate ticket type, content, and length."""
     if not isinstance(ticket, str):
         raise TypeError("Ticket must be a string.")
 
@@ -30,6 +31,11 @@ def validate_ticket(ticket):
 
     if not cleaned_ticket:
         raise ValueError("Ticket must not be empty or whitespace-only.")
+
+    if len(cleaned_ticket) > MAX_TICKET_LENGTH:
+        raise ValueError(
+            f"Ticket must not exceed {MAX_TICKET_LENGTH} characters."
+        )
 
     return cleaned_ticket
 

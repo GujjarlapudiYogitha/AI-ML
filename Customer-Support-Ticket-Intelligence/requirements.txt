@@ -3,3 +3,6 @@ jupyter
 matplotlib
 seaborn
 scikit-learn
+joblib
+numpy
+pytest==9.1.1
